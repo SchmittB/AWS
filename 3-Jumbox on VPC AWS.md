@@ -39,7 +39,7 @@ Security Groups
 		
 
 ## Instances
-(1) NAT Server  
+### (1) NAT Server  
 - Subnet:Public
 - IP:Auto (Default) 
 - Advanced Details(Input User Script).
@@ -65,17 +65,17 @@ EOF
 ```
 
 * Disable Change Source/Dest -  prevent AWS from rejecting IP packets that are not directly addressed to the NAT server instance’s 				 IP address
-(2) Bastion Host
+### (2) Bastion Host
 - IP: Auto 
 - Advanced Details(Input Script) - Ensures server has latest security 0atches 
 `!/bin/sh`
 `yum update -y`
-(3) Internal Instance 
+### (3) Internal Instance 
 - IP: Disabled
 			
 Key Pairs
--(1)NAT & Basiton Key pairs
--(2)Private Instance Key Pair 
+- NAT & Basiton Key pairs
+- Private Instance Key Pair 
 
 ## Connection Guide
 ----------------------------------------------------------			
