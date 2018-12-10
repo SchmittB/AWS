@@ -42,4 +42,4 @@ Create a simple Webpage with a public IP with a simple "Hello World !" message o
 Then log back and query "groups" to see if the groups had been refreshed
 	sudo chown -R root:www /var/www      //  Change the group ownership of the /var/www directory and its contents to the www group:
 
-![Apache webpage](Lab1-webpage/Apache_webpage.png)
+![Apache webpage](Lab1-webpage/Apache_webpage.PNG)
