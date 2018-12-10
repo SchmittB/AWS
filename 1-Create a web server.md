@@ -24,7 +24,7 @@ Create a simple Webpage with a public IP with a simple "Hello World !" message o
 	- Select Enable IP Assignation
 	- add tags : Name, WebPageExample
 	- Configure Security Group -> choose the right one -> Launch
-## 6th :Puttygen and Putty (only for windows)
+## 6th : Puttygen and Putty (only for windows)
 	- Open PuttyGen -> Load -> put the path of the key -> Save Private Key
 	- Open Putty -> Session -> Fill the box of IP adress 
 	- Go to SSH -> Auth -> Give the right path of the right private PPK key -> Open 
