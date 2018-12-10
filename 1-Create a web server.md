@@ -1,13 +1,17 @@
 # create an Apache web server using an AWS instance
 
-Create a simple Webpage with a public IP with a simple "Hello World !" message on it.
+Create a simple Apache Webpage with a public IP.
 
 ## 1st Task : Create your VPC
 	Services -> VPC(in the left) -> Launch VPC Wizard
 	
 ![VPC](Lab1-webpage/AWS_VPC.PNG)
 
-![VPC diagram](Lab1-webpage/VPC_diagram.PNG)
+![Private subnet](Lab1-webpage/Private_Subnet.PNG)
+
+![Public subnet](Lab1-webpage/Public_Subnet.PNG)
+
+![VPC diagram](Lab1-webpage/VPC_diagram.jpg)
 
 ## 2nd : Create an Internet Gateway and link it to the right VPC
 
@@ -32,7 +36,7 @@ Create a simple Webpage with a public IP with a simple "Hello World !" message o
 	- Select Enable IP Assignation
 	- add tags : Name, WebPageExample
 	- Configure Security Group -> choose the right one -> Launch
-	
+
 ![Instance details](Lab1-webpage/Instance_details.PNG)
 
 ## 6th : Puttygen and Putty (only for windows)
