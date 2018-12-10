@@ -2,6 +2,7 @@
 
 References: 
 http://justsomestuff.co.uk/theblog/2017/01/15/using-a-bastion-host-to-access-your-aws-ec2-instances/
+
 https://aws.amazon.com/blogs/security/securely-connect-to-linux-instances-running-in-a-private-amazon-vpc/
 
 ## Summary of Settings 
@@ -38,28 +39,34 @@ Security Groups
 		
 
 ## Instances
-	(1) NAT Server  
-			- Subnet:Public
-			- IP:Auto (Default) 
-		- Advanced Details(Input User Script). Configures NAT by enabling port forwarding and IPV4 masquerading to make external requeststs when the service is launched.
-							#!/bin/sh
-							echo 1 > /proc/sys/net/ipv4/ip_forward  #Enable IPV4 port forwarding                             
-							echo 0 > /proc/sys/net/ipv4/conf/eth0/send_redirects 	#Security precaution to stop optimal path route cache entry
-							/sbin/iptables -t nat -A POSTROUTING -o eth0 -s 0.0.0.0/0 -j MASQUERADE #Masks the private IP
-							/sbin/iptables-save > /etc/sysconfig/iptables # saves the settings 
-							mkdir -p /etc/sysctl.d/ 
-							cat <<EOF > /etc/sysctl.d/nat.conf #File to save nat config whenever instance is rebooted
-							net.ipv4.ip_forward = 1 
-							net.ipv4.conf.eth0.send_redirects = 0
-							EOF 
-			- Disable Change Source/Dest -  prevent AWS from rejecting IP packets that are not directly addressed to the NAT server instance’s 				 IP address
-		(2) Bastion Host
-			- IP: Auto 
-			- Advanced Details(Input Script) - Ensures server has latest security 0atches 
-							#!/bin/sh
-							yum update -y
-		(3) Internal Instance 
-			- IP: Disabled
+(1) NAT Server  
+- Subnet:Public
+- IP:Auto (Default) 
+- Advanced Details(Input User Script).
+Configures NAT by enabling port forwarding and IPV4 masquerading to make external requeststs when the service is launched.
+
+!/bin/sh
+echo 1 > /proc/sys/net/ipv4/ip_forward  #Enable IPV4 port forwarding                             
+echo 0 > /proc/sys/net/ipv4/conf/eth0/send_redirects
+
+#Security precaution to stop optimal path route cache entry
+/sbin/iptables -t nat -A POSTROUTING -o eth0 -s 0.0.0.0/0 -j MASQUERADE
+
+#Masks the private IP
+/sbin/iptables-save > /etc/sysconfig/iptables # saves the settings 
+mkdir -p /etc/sysctl.d/ 
+cat <<EOF > /etc/sysctl.d/nat.conf #File to save nat config whenever instance is rebooted
+net.ipv4.ip_forward = 1 
+net.ipv4.conf.eth0.send_redirects = 0
+EOF 
+- Disable Change Source/Dest -  prevent AWS from rejecting IP packets that are not directly addressed to the NAT server instance’s 				 IP address
+(2) Bastion Host
+- IP: Auto 
+- Advanced Details(Input Script) - Ensures server has latest security 0atches 
+`!/bin/sh`
+`yum update -y`
+(3) Internal Instance 
+- IP: Disabled
 			
 Key Pairs
 -(1)NAT & Basiton Key pairs
@@ -76,7 +83,7 @@ Key Pairs
 
 ## Results
 ------------------------------------------------------------
-login as: ec2-user
+```login as: ec2-user
 Authenticating with public key "imported-openssh-key" from agent
 Last login: Sat Dec  1 20:30:52 2018 from 37.173.73.5
 
@@ -92,6 +99,8 @@ ECDSA key fingerprint is MD5:07:cf:48:98:c2:3f:4a:25:08:a2:ac:26:3a:79:04:61.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '10.10.1.195' (ECDSA) to the list of known hosts.
 
+
+
        __|  __|_  )
        _|  (     /   Amazon Linux AMI
       ___|\___|___|
@@ -102,4 +111,4 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 64 bytes from 8.8.8.8: icmp_seq=1 ttl=108 time=11.4 ms
 64 bytes from 8.8.8.8: icmp_seq=2 ttl=108 time=11.4 ms
 64 bytes from 8.8.8.8: icmp_seq=3 ttl=108 time=11.4 ms
-64 bytes from 8.8.8.8: icmp_seq=4 ttl=108 time=11.5 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=108 time=11.5 ms```
