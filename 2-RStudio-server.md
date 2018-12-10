@@ -53,4 +53,4 @@ $ sudo passwd username
 
 ###### (4) To log in:  in your browser enter public_IP:8787 and enter security credentials 
 
-![Rstudio server](https://github.com/SchmittB/AWS/Lab2-Rstudio-server/Rstudio.PNG)
+![Rstudio server](../AWS/Lab2-Rstudio-server/Rstudio.PNG)
