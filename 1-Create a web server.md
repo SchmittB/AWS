@@ -2,6 +2,12 @@
 
 Create a simple Apache Webpage with a public IP.
 
+## References:
+
+https://docs.aws.amazon.com/en_en/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html
+
+https://www.putty.org/
+
 ## 1st Task : Create your VPC
 	Services -> VPC(in the left) -> Launch VPC Wizard
 	
