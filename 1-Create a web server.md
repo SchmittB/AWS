@@ -4,18 +4,26 @@ Create a simple Webpage with a public IP with a simple "Hello World !" message o
 
 ## 1st Task : Create your VPC
 	Services -> VPC(in the left) -> Launch VPC Wizard
+	
+![VPC](Lab1-webpage/AWS_VPC.PNG)
+
+![VPC diagram](Lab1-webpage/VPC_diagram.PNG)
 
 ## 2nd : Create an Internet Gateway and link it to the right VPC
+
 
 ## 3rd : Create a Route Table 
 	- Go to Routes -> Edit Routes -> Add route -> 0.0.0.0/0 and choose the right "igw-....."
 	- Go to Subnet Asoociation -> Edit -> choose the right subnet
+![Route table](Lab1-webpage/Route_table.PNG)
 
 ## 4th : Create a Security Group
 	- Go to Security Group (in the left) -> Create security group -> Description "Enable HTTP access" 
 	- For clarity put a name in "Name" -> Inbound Rules -> 
 	- Add HTTP (80) Anywhere 0.0.0.0/0
 	- Add SSH (22) Anywhere
+
+![Security group](Lab1-webpage/Inbound_security_group.PNG)
 
 ## 5th : Launch the EC2 instance 
 	- Service -> EC2 -> 
@@ -24,6 +32,9 @@ Create a simple Webpage with a public IP with a simple "Hello World !" message o
 	- Select Enable IP Assignation
 	- add tags : Name, WebPageExample
 	- Configure Security Group -> choose the right one -> Launch
+	
+![Instance details](Lab1-webpage/Instance_details.PNG)
+
 ## 6th : Puttygen and Putty (only for windows)
 	- Open PuttyGen -> Load -> put the path of the key -> Save Private Key
 	- Open Putty -> Session -> Fill the box of IP adress 
