@@ -1,4 +1,4 @@
-#Deploying a bastion host in AWS cloud, setting up a NAT server and accessing private EC2 instances. 
+# Deploying a bastion host in AWS cloud, setting up a NAT server and accessing private EC2 instances. 
 
 References: 
 http://justsomestuff.co.uk/theblog/2017/01/15/using-a-bastion-host-to-access-your-aws-ec2-instances/
