@@ -7,35 +7,33 @@ https://aws.amazon.com/blogs/security/securely-connect-to-linux-instances-runnin
 
 ## Summary of Settings 
 ----------------------------------------------------------
-VPC IP (10.10.0.0/16) 		      
+#### VPC IP (10.10.0.0/16) 		      
 
-Subnets 
+#### Subnets 
   - Public Subnet (10.10.0/24)
     - Auto Assign IP 
   - Private Subnet:(10.10.1.0/24)
   
-Internet Gateway - Attached to VPC
+#### Internet Gateway - Attached to VPC
 
-Route Tables
-  - Public 
-    - Destination 
-      - 0.0.0.0/0
-          - Target: Internet Gateway
-  - Private 
-     -Destination 
-      - 0.0.0.0/0
-          - Target: Nat Server Instance
+#### Route Tables
+* Public 
+	- Destination : 0.0.0.0/0
+	- Target: Internet Gateway
+* Private 
+	- Destination : 0.0.0.0/0
+ 	- Target: Nat Server Instance
 
-Security Groups 
-	- NAT SG
-		- Inbound: All Traffic from Private Subnet(10.10.1.0/24)
-		- Outbound: All Traffic(0.0.0.0/0) 
-	- Bastion SG
-		- Inbound: SSH from my IP
-		- Outbout: All Traffic 
-	- Internal SG (Private) 
-		- Inbound: SSH from Bastion SG
-		- Outbond: All Traffic  
+#### Security Groups 
+- NAT SG
+	- Inbound: All Traffic from Private Subnet(10.10.1.0/24)
+	- Outbound: All Traffic(0.0.0.0/0) 
+- Bastion SG
+	- Inbound: SSH from my IP
+	- Outbout: All Traffic 
+- Internal SG (Private) 
+	- Inbound: SSH from Bastion SG
+	- Outbond: All Traffic  
 		
 
 ## Instances
@@ -52,7 +50,8 @@ echo 0 > /proc/sys/net/ipv4/conf/eth0/send_redirects
 ```
 
 * Security precaution to stop optimal path route cache entry
-/sbin/iptables -t nat -A POSTROUTING -o eth0 -s 0.0.0.0/0 -j MASQUERADE
+
+`/sbin/iptables -t nat -A POSTROUTING -o eth0 -s 0.0.0.0/0 -j MASQUERADE`
 
 * Masks the private IP
 ```
